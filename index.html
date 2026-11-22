@@ -1,0 +1,416 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<title>Keep Your Keys</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&display=swap">
+<style>
+/* Layout: one wide reading column, big type, each section answers one plain question. */
+:root {
+  --bg: #f3f6f8;
+  --surface: #ffffff;
+  --ink: #12222e;
+  --muted: #47596a;
+  --line: #cfd9e1;
+  --brand: #0b4f6c;
+  --brand-ink: #ffffff;
+  --sun: #f2b01e;
+  --sun-ink: #2b2000;
+  --good: #1c6b45;
+  --good-bg: #e3f3ea;
+  --care: #8f3a12;
+  --care-bg: #fbeadf;
+  --display: "Bricolage Grotesque", "Trebuchet MS", Verdana, sans-serif;
+  --body: "Atkinson Hyperlegible", Verdana, "Segoe UI", sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0e1920; --surface: #17252e; --ink: #edf3f7; --muted: #b3c3cf; --line: #32444f;
+    --brand: #7cc7e6; --brand-ink: #06202b; --sun: #f2b01e; --sun-ink: #2b2000;
+    --good: #8fdcb2; --good-bg: #153527; --care: #ffb48d; --care-bg: #3d2012;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0e1920; --surface: #17252e; --ink: #edf3f7; --muted: #b3c3cf; --line: #32444f;
+  --brand: #7cc7e6; --brand-ink: #06202b; --sun: #f2b01e; --sun-ink: #2b2000;
+  --good: #8fdcb2; --good-bg: #153527; --care: #ffb48d; --care-bg: #3d2012;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; }
+img { max-width: 100%; height: auto; display: block; }
+body {
+  background: var(--bg); color: var(--ink);
+  font-family: var(--body); font-size: 1.25rem; line-height: 1.6;
+}
+.wrap {
+  max-width: 46rem; margin-inline: auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+h1, h2, h3 { font-family: var(--display); line-height: 1.12; text-wrap: balance; margin: 0; }
+h1 { font-size: clamp(2.5rem, 8vw, 4.2rem); font-weight: 800; letter-spacing: -0.02em; }
+h2 { font-size: clamp(1.8rem, 5vw, 2.4rem); font-weight: 800; }
+h3 { font-size: 1.35rem; font-weight: 600; }
+p { margin: 0; }
+a { color: var(--brand); text-underline-offset: 3px; }
+a:focus-visible, summary:focus-visible { outline: 3px solid var(--sun); outline-offset: 3px; }
+
+.hero { background: var(--brand); color: var(--brand-ink); }
+.hero .wrap { padding-block: 3rem 3.25rem; display: grid; gap: 1.25rem; }
+.hero .kicker { font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; font-size: 1rem; }
+.hero p.lead { font-size: 1.45rem; max-width: 34rem; }
+.hero .keys { display: inline-block; background: var(--sun); color: var(--sun-ink); padding: 0 0.3em; border-radius: 0.15em; }
+
+.feature { display: grid; gap: 0.9rem; color: var(--brand-ink); text-decoration: none; max-width: 40rem; }
+.feature .shot { position: relative; display: block; border-radius: 16px; overflow: hidden; border: 4px solid var(--sun); }
+.feature .cap { font-size: 1.2rem; }
+.feature:hover .cap b { text-decoration: underline; }
+.play { border-radius: 50%; background: var(--sun); color: var(--sun-ink); display: grid; place-items: center; }
+.play svg { width: 42%; height: 42%; margin-left: 8%; }
+.play.big { position: absolute; left: 50%; top: 50%; width: 5.5rem; height: 5.5rem; transform: translate(-50%, -50%); box-shadow: 0 4px 18px rgba(0,0,0,0.45); }
+figure { margin: 0; display: grid; gap: 0.45rem; }
+figure img { border-radius: 14px; width: 100%; }
+figcaption { font-size: 1.05rem; color: var(--muted); }
+
+.player { display: grid; gap: 0.7rem; }
+.player iframe { width: 100%; aspect-ratio: 16 / 9; height: auto; border: 0; border-radius: 14px; background: #000; display: block; }
+.feature-player iframe { border: 4px solid var(--sun); border-radius: 16px; }
+.player .t { font-weight: 700; }
+
+nav.jump { border-bottom: 2px solid var(--line); background: var(--surface); }
+nav.jump .wrap { padding-block: 0.9rem; display: flex; flex-wrap: wrap; gap: 0.5rem 1.4rem; font-weight: 700; font-size: 1.1rem; }
+
+section { padding-block: 2.75rem; border-bottom: 2px solid var(--line); }
+section .wrap { display: grid; gap: 1.2rem; }
+section:last-of-type { border-bottom: 0; }
+
+.short { font-size: 1.4rem; font-weight: 700; }
+ul.plain { margin: 0; padding-left: 1.3em; display: grid; gap: 0.6rem; }
+
+.two { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr)); }
+.box { border-radius: 14px; padding: 1.25rem 1.35rem; display: grid; gap: 0.6rem; align-content: start; min-width: 0; }
+.box.good { background: var(--good-bg); }
+.box.good h3 { color: var(--good); }
+.box.care { background: var(--care-bg); }
+.box.care h3 { color: var(--care); }
+.box ul { margin: 0; padding-left: 1.2em; display: grid; gap: 0.45rem; }
+
+.story { background: var(--surface); border: 2px solid var(--line); border-radius: 14px; padding: 1.3rem 1.4rem; display: grid; gap: 0.55rem; }
+.story .who { font-family: var(--display); font-weight: 800; font-size: 1.45rem; }
+.story .where { color: var(--muted); font-size: 1.05rem; }
+.story blockquote { margin: 0; font-size: 1.5rem; font-style: italic; color: var(--brand); }
+.stories { display: grid; gap: 1rem; }
+.src { font-size: 1rem; color: var(--muted); }
+
+.videos { display: grid; gap: 0.8rem; }
+a.video {
+  display: grid; grid-template-columns: 10rem 1fr; gap: 1.1rem; align-items: center;
+  background: var(--surface); border: 2px solid var(--line); border-radius: 14px;
+  padding: 0.8rem; text-decoration: none; color: var(--ink);
+}
+a.video:hover { border-color: var(--brand); }
+a.video .thumb { position: relative; display: block; border-radius: 9px; overflow: hidden; }
+a.video .thumb .play { position: absolute; left: 50%; top: 50%; width: 2.8rem; height: 2.8rem; transform: translate(-50%, -50%); box-shadow: 0 2px 10px rgba(0,0,0,0.45); }
+a.video .t { font-weight: 700; display: block; }
+a.video .d { color: var(--muted); font-size: 1.05rem; display: block; }
+a.video > span:last-child { min-width: 0; }
+@media (max-width: 30rem) { a.video { grid-template-columns: 7rem 1fr; gap: 0.8rem; } a.video .t { font-size: 1.1rem; } }
+
+.tablebox { overflow-x: auto; background: var(--surface); border: 2px solid var(--line); border-radius: 14px; }
+table { border-collapse: collapse; width: 100%; min-width: 34rem; font-variant-numeric: tabular-nums; }
+th, td { text-align: left; padding: 0.85rem 1rem; border-bottom: 1px solid var(--line); vertical-align: top; }
+tr:last-child td { border-bottom: 0; }
+th { font-size: 0.95rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+td.price { font-family: var(--display); font-weight: 800; font-size: 1.35rem; white-space: nowrap; }
+tr.pick td { background: var(--good-bg); }
+.tag { display: inline-block; background: var(--good); color: var(--good-bg); font-size: 0.9rem; font-weight: 700; padding: 0.1rem 0.55rem; border-radius: 99px; margin-left: 0.4rem; white-space: nowrap; }
+
+.sum { background: var(--surface); border: 2px solid var(--line); border-radius: 14px; padding: 1.2rem 1.4rem; display: grid; gap: 0.5rem; font-variant-numeric: tabular-nums; }
+.sum div { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+.sum div b { font-family: var(--display); font-size: 1.3rem; }
+
+ol.steps { margin: 0; padding: 0; list-style: none; display: grid; gap: 0.9rem; counter-reset: s; }
+ol.steps li { counter-increment: s; display: grid; grid-template-columns: 2.8rem 1fr; gap: 1rem; align-items: start; }
+ol.steps li::before {
+  content: counter(s); font-family: var(--display); font-weight: 800; font-size: 1.4rem;
+  width: 2.8rem; height: 2.8rem; border-radius: 50%; background: var(--brand); color: var(--brand-ink);
+  display: grid; place-items: center;
+}
+ol.steps li > div { min-width: 0; display: grid; gap: 0.2rem; }
+
+.family { background: var(--surface); }
+footer .wrap { padding-block: 2rem 3rem; font-size: 1rem; color: var(--muted); display: grid; gap: 0.6rem; }
+footer ul { margin: 0; padding-left: 1.2em; display: grid; gap: 0.3rem; }
+footer a { overflow-wrap: anywhere; }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <p class="kicker">For Mom, with love</p>
+    <h1>A car that helps you <span class="keys">keep your keys</span></h1>
+    <p class="lead">Mom, you love your freedom. We love that about you. This page is about a car that can do most of the driving while you sit in the driver's seat and watch.</p>
+    <a class="feature" href="https://www.youtube.com/watch?v=OP5Qxcfkj3U" target="_blank" rel="noopener">
+      <span class="shot"><img src="img/feature.jpg" width="1280" height="720" alt="An 80 year old woman laughing in the driver's seat next to a dark gray Tesla"><span class="play big" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 3l16 9-16 9z" fill="currentColor"/></svg></span></span>
+      <span class="cap"><b>Start here. Watch an 80 year old try it for the first time.</b> She has driven for 60 years. This video was made by a regular family, not by Tesla. Tap to play.</span>
+    </a>
+  </div>
+</header>
+
+<nav class="jump" aria-label="Jump to a part of this page">
+  <div class="wrap">
+    <a href="#what">What it is</a>
+    <a href="#stories">Real people</a>
+    <a href="#videos">Videos</a>
+    <a href="#cost">Cars and cost</a>
+    <a href="#captain">You are the captain</a>
+    <a href="#plan">Next steps</a>
+  </div>
+</nav>
+
+<main>
+<section id="what">
+  <div class="wrap">
+    <h2>What is this car?</h2>
+    <p class="short">It is a Tesla. You tell it where to go. It drives there. You stay in the driver's seat and keep your eyes on the road.</p>
+    <p>The driving helper is called <b>Full Self-Driving (Supervised)</b>. "Supervised" means you are still the boss. The car steers, stops, and turns. You watch, and you can take over any time by turning the wheel or pressing the brake.</p>
+    <figure>
+      <img src="img/inside.jpg" width="1280" height="853" alt="The driver's seat of a Tesla Model Y, with a steering wheel and one large screen in the middle" loading="lazy">
+      <figcaption>The driver's seat. One steering wheel and one big screen. The screen shows the map and what the car sees.</figcaption>
+    </figure>
+    <div class="two">
+      <div class="box good">
+        <h3>What the car does for you</h3>
+        <ul>
+          <li>Drives you from your driveway to the store, the doctor, or a friend's house</li>
+          <li>Stops at red lights and stop signs</li>
+          <li>Changes lanes and makes turns</li>
+          <li>Finds a parking spot and parks</li>
+          <li>Shows the way on a big map, with no paper directions</li>
+          <li>Takes you back home when you press "Home"</li>
+          <li>Shows on a phone where the car is parked</li>
+        </ul>
+      </div>
+      <div class="box care">
+        <h3>What you still do</h3>
+        <ul>
+          <li>Sit in the driver's seat</li>
+          <li>Keep your eyes on the road the whole time</li>
+          <li>Be ready to steer or brake if something looks wrong</li>
+          <li>A small camera checks that you are watching. If you look away too long, the car beeps at you.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="stories">
+  <div class="wrap">
+    <h2>Real people who use it and love it</h2>
+    <p>These are real drivers from news stories this year and last year. Links to each story are at the bottom of the page.</p>
+    <div class="stories">
+      <article class="story">
+        <p class="who">Leonard, age 92</p>
+        <p class="where">Michigan. From The Detroit News, July 2026.</p>
+        <blockquote>"I don't think I would be driving without it."</blockquote>
+        <p>The same news story talks about Dick, age 78, who has used Teslas with this helper since 2019.</p>
+      </article>
+      <article class="story">
+        <p class="who">Rico, age 84, and his wife Gail</p>
+        <p class="where">Virginia. They liked their first Tesla so much they bought a second one.</p>
+        <p>Rico says the car stops at stop signs and looks both ways for him. He says it keeps him from making silly mistakes. Gail says she feels calm in the car because he is calm. They take long highway trips to the mountains.</p>
+      </article>
+      <article class="story">
+        <p class="who">A grandmother, age 93</p>
+        <p class="where">San Diego, California. March 2026.</p>
+        <p>Her son shared a video of her taking a 13 mile trip by herself in her new Tesla. She got there on time. She called the drive "uneventful," which is just what you want. She still has her driver's license.</p>
+      </article>
+      <article class="story">
+        <p class="who">A woman, age 80, who has driven for 60 years</p>
+        <p class="where">She drives an older Subaru. She tried a Tesla for the first time on video.</p>
+        <p>She was nervous at first. By the end she said it was amazing and that the drive felt natural. One time the car got mixed up while turning around on a dead end street, and the helper in the car stepped in.</p>
+      </article>
+      <article class="story">
+        <p class="who">A grandfather, age 80</p>
+        <p class="where">His grandson Steven took him for a ride.</p>
+        <p>He could not believe you just type in the address and the car takes you there. He kept saying how unreal it was.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="videos">
+  <div class="wrap">
+    <h2>More videos to watch</h2>
+    <p>Tap a video to play it. None of these were made by Tesla. The first one was made by a car dealer. The rest are regular families and Tesla fans.</p>
+    <div class="videos">
+      <a class="video" href="https://www.youtube.com/watch?v=ryiPibSg2Jo" target="_blank" rel="noopener">
+        <span class="thumb"><img src="img/v-ryiPibSg2Jo.jpg" width="320" height="180" alt="Rico and Gail with their Tesla" loading="lazy"><span class="play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 3l16 9-16 9z" fill="currentColor"/></svg></span></span>
+        <span><span class="t">This 80 year old couple bought their second Tesla</span><span class="d">Rico and Gail explain why they would not go back.</span></span>
+      </a>
+      <a class="video" href="https://www.youtube.com/watch?v=KKpkgtpnYrQ" target="_blank" rel="noopener">
+        <span class="thumb"><img src="img/v-KKpkgtpnYrQ.jpg" width="320" height="180" alt="Older friends riding in a Tesla" loading="lazy"><span class="play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 3l16 9-16 9z" fill="currentColor"/></svg></span></span>
+        <span><span class="t">A 76 year old mom shows it to her 95 year old friend</span><span class="d">She takes three friends, ages 74 to 95, for a ride.</span></span>
+      </a>
+      <a class="video" href="https://www.youtube.com/watch?v=0DiE2k-CPmE" target="_blank" rel="noopener">
+        <span class="thumb"><img src="img/v-0DiE2k-CPmE.jpg" width="320" height="180" alt="A mom in the driver's seat of a Tesla" loading="lazy"><span class="play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 3l16 9-16 9z" fill="currentColor"/></svg></span></span>
+        <span><span class="t">My mom tries it after a close call</span><span class="d">A son takes his mom out after she had a scare on the road.</span></span>
+      </a>
+      <a class="video" href="https://www.youtube.com/watch?v=y7E4MfA8Rl0" target="_blank" rel="noopener">
+        <span class="thumb"><img src="img/v-y7E4MfA8Rl0.jpg" width="320" height="180" alt="A mom and dad riding in a Tesla" loading="lazy"><span class="play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 3l16 9-16 9z" fill="currentColor"/></svg></span></span>
+        <span><span class="t">Mom and Dad ride in it for the first time</span><span class="d">Honest first reactions from two parents, April 2026.</span></span>
+      </a>
+      <a class="video" href="https://www.youtube.com/watch?v=1kAab9S1BXQ" target="_blank" rel="noopener">
+        <span class="thumb"><img src="img/v-1kAab9S1BXQ.jpg" width="320" height="180" alt="A grandfather riding in a Tesla" loading="lazy"><span class="play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 3l16 9-16 9z" fill="currentColor"/></svg></span></span>
+        <span><span class="t">Grandpa's mind is blown</span><span class="d">A grandfather watches the car stop at a red light by itself.</span></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section id="cost">
+  <div class="wrap">
+    <h2>Which car, and what does it cost?</h2>
+    <p class="short">We think the Model Y is the best fit. The seat is higher, so it is easier to get in and out. It has lots of room for groceries.</p>
+    <figure>
+      <img src="img/model-y.jpg" width="1280" height="1024" alt="A dark gray Tesla Model Y driving on a city street" loading="lazy">
+      <figcaption>The Tesla Model Y. It is a small SUV, about the size of a Toyota RAV4.</figcaption>
+    </figure>
+    <div class="tablebox">
+      <table>
+        <thead>
+          <tr><th>Car</th><th>Price</th><th>Miles on a full charge</th><th>Good to know</th></tr>
+        </thead>
+        <tbody>
+          <tr class="pick">
+            <td><b>Model Y</b><span class="tag">Our pick</span><br>Basic model</td>
+            <td class="price">$39,990</td>
+            <td>About 320 to 350</td>
+            <td>Small SUV. Higher seat. The lowest cost Model Y.</td>
+          </tr>
+          <tr>
+            <td><b>Model Y Premium</b></td>
+            <td class="price">$45,990</td>
+            <td>About 355</td>
+            <td>Nicer inside. Goes a little farther.</td>
+          </tr>
+          <tr>
+            <td><b>Model Y Premium</b><br>All-Wheel Drive</td>
+            <td class="price">$49,990</td>
+            <td>About 327</td>
+            <td>All four wheels pull. Best for snow and ice.</td>
+          </tr>
+          <tr>
+            <td><b>Model 3</b><br>Basic model</td>
+            <td class="price">$36,990</td>
+            <td>About 321</td>
+            <td>Regular car, not an SUV. Sits lower to the ground. The lowest cost Tesla.</td>
+          </tr>
+          <tr>
+            <td><b>Model 3 Premium</b></td>
+            <td class="price">$42,490</td>
+            <td>About 363</td>
+            <td>Nicer inside. Goes the farthest.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <h3>The self-driving helper costs extra</h3>
+    <div class="sum">
+      <div><span>Self-driving helper, each month</span><b>$99</b></div>
+      <div><span>That adds up to, each year</span><b>$1,188</b></div>
+      <div><span>Delivery and order fee, one time</span><b>about $1,640</b></div>
+    </div>
+    <ul class="plain">
+      <li>You pay for the helper month by month. You can stop any time. Tesla no longer sells it as a one time purchase.</li>
+      <li>There is no gas to buy. The car plugs in at home, like a phone.</li>
+      <li>Prices are from news reports in November 2026. Tesla changes prices often, so we will check Tesla's website together before we buy. We will also ask Tesla to confirm the helper works on the exact model we pick.</li>
+    </ul>
+  </div>
+</section>
+
+<section id="captain">
+  <div class="wrap">
+    <h2>You are still the captain</h2>
+    <p class="short">The car does the work. You are in charge.</p>
+    <ul class="plain">
+      <li>You sit in the driver's seat and watch the road, just like always.</li>
+      <li>You can take over any time. Turn the wheel or press the brake, and the car hands control right back to you.</li>
+      <li>The car is a helper, and helpers can make mistakes. That is why Tesla calls it "Supervised." Every driver, at every age, keeps watching.</li>
+      <li>You decide where to go and when. Nobody else is driving your car.</li>
+    </ul>
+  </div>
+</section>
+
+<section id="plan">
+  <div class="wrap">
+    <h2>Next steps, no pressure</h2>
+    <ol class="steps">
+      <li><div><b>Take a free test ride.</b><span>We go to a Tesla store together. You sit in the seat and try it. Nobody has to buy anything.</span></div></li>
+      <li><div><b>See if you like it.</b><span>If it is not for you, that is the end of it.</span></div></li>
+      <li><div><b>Pick the car and the color.</b><span>Your car, your choice.</span></div></li>
+      <li><div><b>Learn it together.</b><span>We ride along for the first few trips until the screen and the buttons feel easy.</span></div></li>
+      <li><div><b>Try the self-driving helper for one month.</b><span>It is $99. Keep it if you love it. Cancel it if you do not.</span></div></li>
+    </ol>
+    <p>Love, Dan</p>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p><b>Where this information came from</b></p>
+    <ul>
+      <li><a href="https://www.detroitnews.com/story/business/autos/2026/07/28/i-wouldnt-be-driving-without-it-seniors-adopt-self-driving-teslas/91059037007/" target="_blank" rel="noopener">The Detroit News, July 28, 2026: Leonard and Dick</a></li>
+      <li><a href="https://www.elevatemotorco.com/ev/blog/restoring-independence-how-tesla-fsd-is-keeping-senior-drivers-safely-on-the-road" target="_blank" rel="noopener">Elevate Motor Co, May 2026: Rico and Gail</a></li>
+      <li><a href="https://teslanorth.com/2026/03/30/zero-disengagements-watch-tesla-fsd-14-3-drive-a-93-year-old-through-sunday-traffic/" target="_blank" rel="noopener">Tesla North, March 30, 2026: the 93 year old grandmother</a></li>
+      <li><a href="https://supercarblondie.com/self-driving-car-tesla-fsd-autonomous-driving-electric-car/" target="_blank" rel="noopener">Supercar Blondie, September 2025: the 80 year old first ride</a></li>
+      <li><a href="https://www.torquenews.com/1084/i-blew-my-grandpas-mind-when-i-showed-him-my-tesla-model-3s-fsd-he-said-unreal-crazy-steven" target="_blank" rel="noopener">Torque News, June 2025: Steven and his grandfather</a></li>
+      <li><a href="https://applescoop.org/story/every-tesla-model-2026-price-range-0-60-model-3-model-y-cybertruck" target="_blank" rel="noopener">Apple Scoop, November 9, 2026: Tesla prices and range</a></li>
+      <li><a href="https://shattered.io/tesla-model-y-awd-41990-removed-premium-awd-49990/" target="_blank" rel="noopener">Shattered, November 18, 2026: Model Y price changes and fees</a></li>
+      <li><a href="https://www.tesla.com/support/full-self-driving-subscriptions" target="_blank" rel="noopener">Tesla: Full Self-Driving (Supervised) subscription, $99 a month</a></li>
+      <li><a href="https://www.tesla.com/support/how-add-or-remove-drivers" target="_blank" rel="noopener">Tesla: how to add family as drivers in the app</a></li>
+    </ul>
+    <p><b>Photos</b></p>
+    <ul>
+      <li>Model Y on the street: <a href="https://commons.wikimedia.org/wiki/File:Tesla_Model_Y_Juniper_Washington_DC_Metro_Area,_USA.jpg" target="_blank" rel="noopener">OWS Photography, Wikimedia Commons</a>, CC BY 4.0</li>
+      <li>Model Y driver's seat: <a href="https://commons.wikimedia.org/wiki/File:Tesla_Model_Y_Juniper_Long_Range_AWD_White_%2B_Black_03.jpg" target="_blank" rel="noopener">Ethan Llamas, Wikimedia Commons</a>, CC BY-SA 4.0</li>
+      <li>Video pictures belong to each video's maker and link to their video on YouTube.</li>
+    </ul>
+    <p>Put together by Dan on November 22, 2026.</p>
+  </div>
+</footer>
+<script>
+/* ytplay: on the open web, a tap plays the video right on the page. Inside frames that block embeds, the plain link still works. */
+(function () {
+  if (!/github\.io$/.test(location.hostname)) return;
+  document.querySelectorAll('a.feature, a.video').forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      var m = /[?&]v=([\w-]+)/.exec(a.href);
+      if (!m) return;
+      e.preventDefault();
+      var box = document.createElement('div');
+      box.className = 'player' + (a.classList.contains('feature') ? ' feature-player' : '');
+      var f = document.createElement('iframe');
+      f.src = 'https://www.youtube-nocookie.com/embed/' + m[1] + '?autoplay=1&rel=0';
+      f.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
+      f.allowFullscreen = true;
+      f.title = (a.querySelector('.t, b') || a).textContent.trim();
+      box.appendChild(f);
+      var t = a.querySelector('.t');
+      if (t) { var c = document.createElement('div'); c.className = 't'; c.textContent = t.textContent; box.appendChild(c); }
+      a.replaceWith(box);
+    });
+  });
+})();
+</script>
+</body>
+</html>
